@@ -1,0 +1,20 @@
+.match-item {
+  border: 0.02rem solid;
+  margin: 0 0.5rem;
+}
+
+.container {
+  overflow: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+.match-container {
+  display: flex;
+  align-items: center;
+  margin: 0.7rem;
+}
+
+.fixture-col {
+  vertical-align: middle !important;
+}

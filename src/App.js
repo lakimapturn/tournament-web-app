@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Navbar from "./Components/Nav/Navbar";
+import Home from "./Screens/Home";
+import TournamentDetails from "./Screens/TournamentDetails";
+import Tournaments from "./Screens/Tournaments";
+import Loading from "./Components/Loading";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isMatchFetching = useSelector((state) => state.match.isFetching);
+  const isTournamentFetching = useSelector(
+    (state) => state.tournament.isFetching
+  );
+  const isPlayerFetching = useSelector((state) => state.player.isFetching);
+
+  const isFetching =
+    isMatchFetching || isTournamentFetching || isPlayerFetching;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Loading loading={isFetching} />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tournaments" element={<Tournaments />} />
+        <Route
+          path="/tournament/:tournamentId/:eventId"
+          element={<TournamentDetails />}
+        />
+      </Routes>
     </div>
   );
 }

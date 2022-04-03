@@ -1,0 +1,19 @@
+.container {
+  background-color: #231f20;
+  padding-bottom: 3rem;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  padding: 0 1.5rem;
+}
+
+.card {
+  margin: auto;
+  width: 90%;
+}
+
+.default-text-container {
+  margin: 1rem auto;
+}
