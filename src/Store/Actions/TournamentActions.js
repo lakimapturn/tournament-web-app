@@ -11,11 +11,14 @@ export const fetchTournamentList = () => {
 
       const csrftoken = getCookie("csrftoken");
 
-      const response = await fetch("http://localhost:8000/tournament-list", {
-        headers: {
-          "X-CSRFToken": csrftoken,
-        },
-      });
+      const response = await fetch(
+        "https://gma-tournament-admin.herokuapp.com/tournament-list",
+        {
+          headers: {
+            "X-CSRFToken": csrftoken,
+          },
+        }
+      );
       const data = await response.json();
       // console.log("Tournament List Success! ", data);
 
@@ -37,7 +40,7 @@ export const fetchTournamentDetails = (tournamentId) => {
       const csrftoken = getCookie("csrftoken");
 
       const response = await fetch(
-        `http://localhost:8000/tournament-details?id=${tournamentId}`,
+        `https://gma-tournament-admin.herokuapp.com/tournament-details?id=${tournamentId}`,
         {
           headers: {
             "X-CSRFToken": csrftoken,
