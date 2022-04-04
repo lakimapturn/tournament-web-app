@@ -2,15 +2,16 @@ import styles from "./Navbar.module.css";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Colors from "../../Constants/Colors";
+import Logo from "../../assets/GMALogo.jpg";
 
 const Navbar = (props) => {
-  const itemColor = Colors.red;
+  // const itemColor = Colors.red;
   return (
     <>
       <nav className={styles["navbar"]}>
         <div className={styles["navbar-container"]}>
           <Link to="/" className={styles["navbar-logo"]}>
-            Title
+            GMA Tournaments
           </Link>
           {/* <div className={styles["mobile-icon"]}>
             <FaBars size={25} />
@@ -33,9 +34,13 @@ const Navbar = (props) => {
             </li>
           </ul>
           <nav className={styles["nav-btn"]}>
-            <Link to="/signup" className={styles["nav-btn"]}>
-              <FaUserCircle size={50} />
-            </Link>
+            <a
+              href="https://www.gemsmodernacademy-dubai.com/en"
+              className={styles["nav-btn"]}
+            >
+              {/* <FaUserCircle size={50} /> */}
+              <img src={Logo} className={styles["logo"]} />
+            </a>
           </nav>
         </div>
       </nav>

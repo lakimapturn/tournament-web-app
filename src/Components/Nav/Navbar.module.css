@@ -8,7 +8,8 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #eaeaea;
+  /* background-color: #eaeaea; */
+  background-color: #fff;
 }
 
 .navbar-container {
@@ -107,4 +108,8 @@
     font-size: 1.8rem;
     cursor: pointer;
   }
+}
+
+.logo {
+  height: 4rem;
 }
