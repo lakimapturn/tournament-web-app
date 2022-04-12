@@ -1,3 +1,4 @@
+import { baseUrl } from "../../Constants/Data";
 import { getCookie } from "../../Constants/Functions";
 
 export const FETCHING_PLAYER_DATA = "FETCHING_PLAYER_DATA";
@@ -11,7 +12,7 @@ export const fetchPlayerData = (tournamentId, gender, age, eventId) => {
       const csrftoken = getCookie("csrftoken");
 
       const response = await fetch(
-        `https://gma-tournament-admin.herokuapp.com/teams?gender=${gender}&age=${age}&tournament_id=${tournamentId}&event_id=${eventId}`,
+        `${baseUrl}teams?gender=${gender}&age=${age}&tournament_id=${tournamentId}&event_id=${eventId}`,
         {
           headers: {
             "X-CSRFToken": csrftoken,

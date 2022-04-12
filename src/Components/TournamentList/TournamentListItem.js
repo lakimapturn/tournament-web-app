@@ -19,7 +19,7 @@ import GlassEffectContainer from "../Header/GlassText";
 import Colors from "../../Constants/Colors";
 
 const TournamentListItem = (props) => {
-  console.log(props);
+  const imageUrl = "https://gma-tournament-admin.herokuapp.com";
   return (
     <>
       <HoverableCard body outline>
@@ -27,7 +27,11 @@ const TournamentListItem = (props) => {
           <Col xs={8} className={styles["card-img-container"]}>
             <CardImg
               alt="tournament Card Image"
-              src="https://static.toiimg.com/thumb/msid-87873582,width-1070,height-580,imgsize-39124,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg"
+              src={
+                props.tournament.image
+                  ? `${imageUrl + props.tournament.image}`
+                  : "https://static.toiimg.com/thumb/msid-87873582,width-1070,height-580,imgsize-39124,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg"
+              }
             />
           </Col>
           <Col className="m-auto">
@@ -84,7 +88,12 @@ const TournamentListItem = (props) => {
               >
                 <CardImg
                   alt="Card image cap"
-                  src="https://global-uploads.webflow.com/5b44edefca321a1e2d0c2aa6/5fc43672e4b222bbdc7d6325_Dimensions-Sports-Badminton-Racket-Dimensions.svg"
+                  src={
+                    event.image
+                      ? imageUrl + event.image
+                      : "https://global-uploads.webflow.com/5b44edefca321a1e2d0c2aa6/5fc43672e4b222bbdc7d6325_Dimensions-Sports-Badminton-Racket-Dimensions.svg"
+                  }
+                  height={225}
                 />
                 <CardImgOverlay
                   onClick={() => props.onViewTournament(event.id)}

@@ -17,7 +17,7 @@ const Leaderboard = (props) => {
             return (
               <tr key={school.id}>
                 <th scope="row">{index + 1}</th>
-                <td>{school.name}</td>
+                <td>{school.school.name}</td>
                 {/* <td>{school.wins ? school.wins : 0}</td>
                 <td>{school.draws ? school.draws : 0}</td>
                 <td>{school.losses ? school.losses : 0}</td> */}
