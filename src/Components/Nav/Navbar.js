@@ -1,48 +1,110 @@
 import styles from "./Navbar.module.css";
-import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import Colors from "../../Constants/Colors";
+import { FaBars } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/GMALogo.jpg";
+import MobileLogo from "../../assets/GMALogo-mobile.png";
+import { useEffect, useState } from "react";
+import Colors from "../../Constants/Colors";
+import {
+  Collapse,
+  Nav,
+  NavbarToggler,
+  NavItem,
+  Navbar as NavBarBar,
+} from "reactstrap";
 
 const Navbar = (props) => {
-  // const itemColor = Colors.red;
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  window.addEventListener("resize", () => isOpen && setIsOpen(false));
+
+  // const getLogo = () => {
+  //   if (window.innerWidth < 612) return MobileLogo;
+  //   return Logo;
+  // };
+
+  const checkIsActive = (link) => {
+    return location.pathname === link ? Colors.gold : Colors.black;
+  };
+
   return (
     <>
       <nav className={styles["navbar"]}>
-        <div className={styles["navbar-container"]}>
-          <Link to="/" className={styles["navbar-logo"]}>
-            GMA Tournaments
-          </Link>
-          {/* <div className={styles["mobile-icon"]}>
-            <FaBars size={25} />
-          </div> */}
-          <ul className={styles["nav-menu"]}>
-            <li className={styles["nav-item"]}>
-              <Link to="/" className={styles["nav-link"]}>
+        <div className={styles["navbar-content"]}>
+          <div className={styles["navbar-container"]}>
+            <Link to="/" className={styles["navbar-logo"]}>
+              GMA Tournaments
+            </Link>
+            <div className={styles["mobile-icon"]}>
+              <NavBarBar light>
+                <NavbarToggler
+                  className="me-2"
+                  onClick={() => setIsOpen((prevState) => !prevState)}
+                />
+              </NavBarBar>
+            </div>
+            <ul className={styles["nav-menu"]}>
+              <li className={styles["nav-item"]}>
+                <Link to="/" className={styles["nav-link"]}>
+                  Home
+                </Link>
+              </li>
+              <li className={styles["nav-item"]}>
+                <Link to="/tournaments" className={styles["nav-link"]}>
+                  Tournaments
+                </Link>
+              </li>
+              <li className={styles["nav-item"]}>
+                <Link to="/about" className={styles["nav-link"]}>
+                  About
+                </Link>
+              </li>
+            </ul>
+            <nav className={styles["nav-btn"]}>
+              <a
+                href={"https://www.gemsmodernacademy-dubai.com/en"}
+                className={styles["nav-btn"]}
+              >
+                <img src={Logo} className={styles["logo"]} />
+              </a>
+            </nav>
+          </div>
+        </div>
+        <Collapse navbar isOpen={isOpen} style={{ position: "sticky" }}>
+          {/* <img src={Logo} className={styles["logo"]} /> */}
+          <hr />
+          <Nav navbar>
+            <NavItem>
+              <Link
+                to="/"
+                className={styles["nav-link"]}
+                style={{ color: checkIsActive("/") }}
+              >
                 Home
               </Link>
-            </li>
-            <li className={styles["nav-item"]}>
-              <Link to="/tournaments" className={styles["nav-link"]}>
+            </NavItem>
+            <NavItem>
+              <Link
+                to="/tournaments"
+                className={styles["nav-link"]}
+                style={{ color: checkIsActive("/tournaments") }}
+              >
                 Tournaments
               </Link>
-            </li>
-            <li className={styles["nav-item"]}>
-              <Link to="/about" className={styles["nav-link"]}>
+            </NavItem>
+            <NavItem>
+              <Link
+                to="/about"
+                className={styles["nav-link"]}
+                style={{ color: checkIsActive("/about") }}
+              >
                 About
               </Link>
-            </li>
-          </ul>
-          <nav className={styles["nav-btn"]}>
-            <a
-              href="https://www.gemsmodernacademy-dubai.com/en"
-              className={styles["nav-btn"]}
-            >
-              {/* <FaUserCircle size={50} /> */}
-              <img src={Logo} className={styles["logo"]} />
-            </a>
-          </nav>
-        </div>
+            </NavItem>
+          </Nav>
+          <hr />
+        </Collapse>
       </nav>
     </>
   );

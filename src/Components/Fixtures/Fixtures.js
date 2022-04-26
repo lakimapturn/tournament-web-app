@@ -11,7 +11,7 @@ import Loading from "../Loading";
 const Fixtures = (props) => {
   // const matches = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const matches = useSelector((state) => state.match.matches);
-  const initialMatches = useSelector((state) => state.match.initialNumMatches);
+  const initialTeams = useSelector((state) => state.match.initialNumTeams);
   const dispatch = useDispatch();
   const [fixtures, setFixtures] = useState([[]]);
 
@@ -33,8 +33,8 @@ const Fixtures = (props) => {
   }, []);
 
   useEffect(() => {
-    setFixtures(generateMatches(initialMatches * 2, matches));
-  }, [matches, initialMatches]);
+    setFixtures(generateMatches(initialTeams, matches));
+  }, [matches, initialTeams]);
 
   // if (isFetching) return <Loading loading={true} />;
 

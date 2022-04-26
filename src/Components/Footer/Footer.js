@@ -5,6 +5,7 @@ const Footer = (props) => {
     <footer className="d-flex flex-wrap justify-content-between align-items-center p-3 m-4 border-top">
       <a
         className="col-md-4 mb-0 text-muted"
+        style={{ textDecoration: "none" }}
         href="https://github.com/lakimapturn"
       >
         <BsGithub size={30} /> lakimapturn

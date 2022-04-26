@@ -105,17 +105,6 @@ const TournamentDetails = (props) => {
               />
               <br />
               <Row>
-                {/* <Col xs={2}>
-                <Sidebar
-                  isSidebarCollapsed={isSidebarCollapsed}
-                  onToggleSidebar={onToggleSidebarHandler}
-                  categories={categories}
-                  selectedCategory={selectedCategory}
-                  onSelectCategory={(category) =>
-                    onSelectCategoryHandler(category)
-                  }
-                />
-              </Col> */}
                 <Col>
                   <Card>
                     <Tabbar

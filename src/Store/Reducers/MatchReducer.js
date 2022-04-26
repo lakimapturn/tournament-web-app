@@ -3,7 +3,7 @@ import { FETCHING_MATCH_DATA, FETCH_MATCH_LIST } from "../Actions/MatchActions";
 const initialState = {
   isFetching: false,
   matches: [],
-  initialNumMatches: 2,
+  initialNumTeams: 2,
 };
 
 const matchReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const matchReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         matches: action.payload.matches,
-        initialNumMatches: action.payload.initial_num_matches,
+        initialNumTeams: action.payload.initial_num_teams,
       });
     }
 

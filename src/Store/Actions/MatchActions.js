@@ -26,7 +26,7 @@ export const fetchMatchList = (tournamentId, age, gender, eventId) => {
         type: FETCH_MATCH_LIST,
         payload: {
           matches: data.matches,
-          initial_num_matches: data["initial-matches"],
+          initial_num_teams: data["initial-teams"],
         },
       });
     } catch (err) {
