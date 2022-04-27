@@ -1,0 +1,6 @@
+.text-container {
+  background-color: #231f2071;
+  backdrop-filter: blur(1rem);
+  padding: 1.5rem;
+  border-radius: 1rem;
+}

@@ -19,6 +19,7 @@ const Home = (props) => {
         buttonText="VIEW TOURNAMENTS"
         image="https://content3.jdmagicbox.com/comp/def_content/badminton-courts/1-badminton-courts-1-m069r.jpg?clr=2b3b2b"
         onButtonClick={navigateToTournaments}
+        contain
       />
       <Footer />
     </>

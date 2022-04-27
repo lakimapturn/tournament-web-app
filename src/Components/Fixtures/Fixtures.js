@@ -1,21 +1,16 @@
-import { TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
-import { Col, Container, Row, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import styles from "./Fixtures.module.css";
 
 import MatchItem from "./MatchItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMatchList } from "../../Store/Actions/MatchActions";
-import Loading from "../Loading";
 
 const Fixtures = (props) => {
-  // const matches = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const matches = useSelector((state) => state.match.matches);
   const initialTeams = useSelector((state) => state.match.initialNumTeams);
   const dispatch = useDispatch();
   const [fixtures, setFixtures] = useState([[]]);
-
-  const isFetching = useSelector((state) => state.match.isFetching);
 
   useEffect(() => {
     try {
@@ -35,8 +30,6 @@ const Fixtures = (props) => {
   useEffect(() => {
     setFixtures(generateMatches(initialTeams, matches));
   }, [matches, initialTeams]);
-
-  // if (isFetching) return <Loading loading={true} />;
 
   return (
     <>
@@ -64,19 +57,22 @@ const generateMatches = (nTeams, matches) => {
   const fix = [];
   let counter = 0;
   let alphabet = 65;
-  while (nTeams > 1) {
-    nTeams = (nTeams + 1) >> 1;
+  let currentRows = Math.ceil(nTeams / 2);
+
+  while (currentRows > 0) {
     const row = [];
-    for (let i = 0; i < nTeams; i++) {
+    for (let j = 0; j < currentRows; j++) {
       row.push({
-        location: `${String.fromCharCode(alphabet)}${i + 1}`,
+        location: `${String.fromCharCode(alphabet)}${j + 1}`,
         item: MatchItem,
         props: matches[counter++],
       });
     }
     fix.push(row);
     alphabet++;
+    currentRows = Math.floor(currentRows * Math.pow(0.5, 1));
   }
+
   return fix;
 };
 

@@ -12,10 +12,8 @@ import {
 import styles from "./TournamentDetails.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import Header from "../Components/Header/Header";
 import Leaderboard from "../Components/Leaderboard/Leaderboard";
 import Tabbar from "../Components/Nav/Tabbar";
-import Sidebar from "../Components/Sidebar/Sidebar";
 import { tabs } from "../Constants/Data";
 import CategorySelect from "../Components/CategorySelect";
 import { fetchTournamentDetails } from "../Store/Actions/TournamentActions";
@@ -58,7 +56,7 @@ const TournamentDetails = (props) => {
 
   useEffect(() => {
     dispatch(fetchTournamentDetails(tournamentId));
-  }, []);
+  }, [dispatch, tournamentId]);
 
   useEffect(() => {
     if (selectedCategory && selectedGender) {
@@ -68,14 +66,6 @@ const TournamentDetails = (props) => {
       dispatch(fetchPlayerData(tournamentId, selectedGender, age, eventId));
     }
   }, [selectedCategory, selectedGender]);
-
-  // const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
-  // const [selectedCategory, setSelectedCategory] = useState();
-  // const onToggleSidebarHandler = () =>
-  //   setSidebarCollapsed((prevState) => !prevState);
-  // const onSelectCategoryHandler = (category) => {
-  //   setSelectedCategory(category);
-  // };
 
   return (
     <>

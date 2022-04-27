@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+import styles from "./GlassText.module.css";
 
 const GlassEffectContainer = (props) => {
   return (

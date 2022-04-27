@@ -1,11 +1,9 @@
-import { Card, CardBody, CardTitle, Container, Row } from "reactstrap";
+import { Card, CardBody, Container, Row } from "reactstrap";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchTournamentList } from "../Store/Actions/TournamentActions";
-import Loading from "../Components/Loading";
-import Header from "../Components/Header/Header";
 import TournamentListItem from "../Components/TournamentList/TournamentListItem";
 import Title from "./Title";
 import Footer from "../Components/Footer/Footer";
@@ -15,11 +13,9 @@ const Tournaments = (props) => {
   const dispatch = useDispatch();
   const [selectedTournament, setSelectedTournament] = useState(-1);
 
-  const isFetching = useSelector((state) => state.tournament.isFetching);
-
   useEffect(() => {
     dispatch(fetchTournamentList());
-  }, []);
+  }, [dispatch]);
   const tournaments = useSelector((state) => state.tournament.tournaments);
 
   const onViewDetailsHandler = (tournamentId) => {
@@ -32,13 +28,6 @@ const Tournaments = (props) => {
 
   return (
     <>
-      {/* <Loading loading={isFetching} /> */}
-
-      {/* <Header
-        // image="https://media.istockphoto.com/videos/tournament-bracket-background-video-id92577359?s=640x640"
-        image={props.image}
-        title="Events"
-      /> */}
       <Title
         size="md"
         title="Events"

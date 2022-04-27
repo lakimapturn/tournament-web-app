@@ -1,9 +1,8 @@
 import styles from "./Navbar.module.css";
-import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/GMALogo.jpg";
-import MobileLogo from "../../assets/GMALogo-mobile.png";
-import { useEffect, useState } from "react";
+// import MobileLogo from "../../assets/GMALogo-mobile.png";
+import { useState } from "react";
 import Colors from "../../Constants/Colors";
 import {
   Collapse,
@@ -66,7 +65,7 @@ const Navbar = (props) => {
                 href={"https://www.gemsmodernacademy-dubai.com/en"}
                 className={styles["nav-btn"]}
               >
-                <img src={Logo} className={styles["logo"]} />
+                <img src={Logo} className={styles["logo"]} alt="GMA-Logo" />
               </a>
             </nav>
           </div>

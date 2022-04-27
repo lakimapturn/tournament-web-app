@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import Title from "./Title";
 
 const Events = (props) => {
   const tournamentId = useParams().tournamentId;
@@ -13,7 +12,6 @@ const Events = (props) => {
 
   return (
     <>
-      {/* <Header title="Tournaments" /> */}
       <Container>
         <Row>
           <Card body className="text-center">

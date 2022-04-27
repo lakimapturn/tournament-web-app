@@ -3,7 +3,7 @@ import styles from "./Title.module.css";
 import { FaChevronCircleRight } from "react-icons/fa";
 
 const Title = (props) => {
-  let size = "calc(20vh - 5rem)";
+  let size = "";
 
   switch (props.size) {
     case "md": {
@@ -13,6 +13,9 @@ const Title = (props) => {
     case "xl": {
       size = "calc(100vh - 5rem)";
       break;
+    }
+    default: {
+      size = "calc(20vh - 5rem)";
     }
   }
 
@@ -26,6 +29,7 @@ const Title = (props) => {
           src={props.image}
           alt="background"
           className={`${styles["background-image"]}`}
+          style={props.contain && { height: "100%" }}
         />
       ) : (
         <div
