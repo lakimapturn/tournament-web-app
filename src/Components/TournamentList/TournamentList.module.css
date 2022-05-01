@@ -8,6 +8,12 @@
   justify-content: space-around;
 }
 
+@media (max-width: 960px) {
+  .collapse-layout {
+    grid-template-columns: 95%;
+  }
+}
+
 .event-container {
   min-width: 50%;
 }
