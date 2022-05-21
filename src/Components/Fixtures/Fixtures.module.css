@@ -9,10 +9,40 @@
   scrollbar-width: none; /* for Firefox */
 }
 
+.content-container {
+  width: 21rem;
+  overflow: hidden !important;
+}
+
 .match-container {
   display: flex;
   align-items: center;
   margin: 0.7rem;
+}
+
+.divider {
+  background-color: black;
+  opacity: 100;
+}
+
+.match-container1 {
+  border: 0.01rem solid black;
+  border-radius: 0.5rem;
+  width: 90%;
+  overflow: hidden;
+}
+
+.winning-team {
+  color: black;
+}
+
+.team-col {
+  background-color: #d79922;
+}
+
+.score-col {
+  border-left: 0.1rem solid black;
+  background-color: #efe2ba;
 }
 
 .fixture-col {

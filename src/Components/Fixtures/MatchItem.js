@@ -1,52 +1,33 @@
-import {
-  TableCell,
-  TableContainer,
-  TableRow,
-  Paper,
-  TableBody,
-  Table,
-  tableCellClasses,
-  styled,
-  Tab,
-} from "@mui/material";
+import { Col, Container, Row } from "reactstrap";
 import Colors from "../../Constants/Colors";
 import styles from "./Fixtures.module.css";
 
 const MatchItem = (props) => {
-  const StyledPlayerCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.body}`]: {
-      borderWidth: 1,
-      borderColor: Colors.black,
-      backgroundColor: Colors.gold,
-      color: Colors.black,
-    },
-  }));
-  const StyledScoreCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.body}`]: {
-      borderWidth: 1,
-      backgroundColor: Colors.pale_gold,
-      borderColor: Colors.black,
-      // opacity: 0.7,
-      color: Colors.black,
-      width: "2.5rem",
-    },
-  }));
+  let player1Score = 0,
+    player2Score = 0;
+  if (props.match?.score) {
+    player1Score = parseInt(
+      props.match.score.substring(0, props.match.score.indexOf("-"))
+    );
+    player2Score = parseInt(
+      props.match.score.substring(props.match.score.indexOf("-") + 1)
+    );
+  }
 
   if (props.match === undefined) return <></>;
   return (
-    <TableContainer component={Paper} className={styles[`match-container`]}>
-      <h6 className="m-0" style={{ color: Colors.gold }}>
-        {props.location}
-      </h6>
-      <Table
-        className={styles["match-item"]}
-        sx={{ minWidth: 300, minHeight: 50 }}
-        size="small"
-        aria-label="match item"
-      >
-        <TableBody>
-          <TableRow>
-            <StyledPlayerCell align="center">
+    <>
+      <Container className={`d-flex ${styles["content-container"]} my-3`} fluid>
+        <h6 className="my-auto me-3" style={{ color: Colors.gold }}>
+          {props.location}
+        </h6>
+        <Container className={`${styles["match-container1"]} p-0`}>
+          <Row
+            className={`${
+              player1Score > player2Score && styles["winning-team"]
+            } w-100 m-0`}
+          >
+            <Col className={`${styles["team-col"]} py-2`}>
               {props.match.team1?.players.map((player) => (
                 <>
                   <p className="m-0 lead fs-6 fw-normal">
@@ -54,20 +35,20 @@ const MatchItem = (props) => {
                   </p>
                 </>
               ))}
-            </StyledPlayerCell>
-            <StyledScoreCell align="center">
+            </Col>
+            <Col xs={3} className={`${styles["score-col"]} py-2`}>
               <p className="m-0 lead fs-6 fw-normal">
-                {props.match.score
-                  ? props.match.score.substring(
-                      0,
-                      props.match.score.indexOf("-")
-                    )
-                  : "--"}
+                {player1Score ? player1Score : "--"}
               </p>
-            </StyledScoreCell>
-          </TableRow>
-          <TableRow>
-            <StyledPlayerCell align="center">
+            </Col>
+          </Row>
+          <hr className={`${styles["divider"]} my-0`} />
+          <Row
+            className={`${
+              player1Score < player2Score && styles["winning-team"]
+            } w-100 m-0`}
+          >
+            <Col className={`${styles["team-col"]} py-2`}>
               {props.match.team2?.players.map((player) => (
                 <>
                   <p className="m-0 lead fs-6 fw-normal">
@@ -75,20 +56,16 @@ const MatchItem = (props) => {
                   </p>
                 </>
               ))}
-            </StyledPlayerCell>
-            <StyledScoreCell align="center">
+            </Col>
+            <Col xs={3} className={`${styles["score-col"]} py-2`}>
               <p className="m-0 lead fs-6 fw-normal">
-                {props.match.score
-                  ? props.match.score.substring(
-                      props.match.score.indexOf("-") + 1
-                    )
-                  : "--"}
+                {player2Score ? player2Score : "--"}
               </p>
-            </StyledScoreCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+            </Col>
+          </Row>
+        </Container>
+      </Container>
+    </>
   );
 };
 

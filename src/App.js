@@ -6,6 +6,7 @@ import TournamentDetails from "./Screens/TournamentDetails";
 import Tournaments from "./Screens/Tournaments";
 import Loading from "./Components/Loading";
 import { useSelector } from "react-redux";
+import About from "./Screens/About";
 
 function App() {
   const isMatchFetching = useSelector((state) => state.match.isFetching);
@@ -28,6 +29,7 @@ function App() {
           path="/tournament/:tournamentId/:eventId"
           element={<TournamentDetails />}
         />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
