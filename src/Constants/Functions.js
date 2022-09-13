@@ -12,3 +12,5 @@ export const getCookie = (name) => {
   }
   return cookieValue;
 };
+
+export const getCategory = (gender, age, event) => `${age}-${gender}-${event}`;

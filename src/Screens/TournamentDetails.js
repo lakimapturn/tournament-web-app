@@ -25,6 +25,8 @@ import PlayerSchoolList from "../Components/PlayerList/PlayerSchoolList";
 import Fixtures from "../Components/Fixtures/Fixtures";
 import { Typography } from "@mui/material";
 import Title from "./Title";
+import { getCategory } from "../Constants/Functions";
+import { fetchMatchList } from "../Store/Actions/MatchActions";
 
 const TournamentDetails = (props) => {
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ const TournamentDetails = (props) => {
     )
   );
   const players = useSelector((state) => state.player);
+  const matches = useSelector((state) => state.match.matches);
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const onSelectCategoryHandler = (category) => {
@@ -45,8 +48,8 @@ const TournamentDetails = (props) => {
   };
 
   const [selectedGender, setSelectedGender] = useState("");
-  const onSelectGenderHandler = (category) => {
-    setSelectedGender(category);
+  const onSelectGenderHandler = (gender) => {
+    setSelectedGender(gender);
   };
 
   const [activeTab, setActiveTab] = useState(0);
@@ -62,6 +65,9 @@ const TournamentDetails = (props) => {
     if (selectedCategory && selectedGender) {
       const age = parseInt(
         selectedCategory.substring(selectedCategory.indexOf("-") + 1)
+      );
+      dispatch(
+        fetchMatchList(tournamentId, selectedCategory, selectedGender, eventId)
       );
       dispatch(fetchPlayerData(tournamentId, selectedGender, age, eventId));
     }
@@ -107,12 +113,29 @@ const TournamentDetails = (props) => {
                         <>
                           <TabPane tabId="0">
                             <Row className={`${styles["fixtures-container"]}`}>
-                              <Fixtures
-                                tournament={tournamentId}
-                                category={selectedCategory}
-                                gender={selectedGender}
-                                event={eventId}
-                              />
+                              {matches[
+                                getCategory(
+                                  selectedGender,
+                                  selectedCategory,
+                                  eventId
+                                )
+                              ] && (
+                                <Fixtures
+                                  tournament={tournamentId}
+                                  category={selectedCategory}
+                                  gender={selectedGender}
+                                  event={eventId}
+                                  matches={
+                                    matches[
+                                      getCategory(
+                                        selectedGender,
+                                        selectedCategory,
+                                        eventId
+                                      )
+                                    ]
+                                  }
+                                />
+                              )}
                             </Row>
                           </TabPane>
                           <TabPane tabId="1">

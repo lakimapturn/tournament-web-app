@@ -5,31 +5,16 @@ import MatchItem from "./MatchItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMatchList } from "../../Store/Actions/MatchActions";
+import { getCategory } from "../../Constants/Functions";
 
 const Fixtures = (props) => {
-  const matches = useSelector((state) => state.match.matches);
   const initialTeams = useSelector((state) => state.match.initialNumTeams);
-  const dispatch = useDispatch();
+
   const [fixtures, setFixtures] = useState([[]]);
 
   useEffect(() => {
-    try {
-      dispatch(
-        fetchMatchList(
-          props.tournament,
-          props.category,
-          props.gender,
-          props.event
-        )
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
-  useEffect(() => {
-    setFixtures(generateMatches(initialTeams, matches));
-  }, [matches, initialTeams]);
+    setFixtures(generateMatches(initialTeams, props.matches));
+  }, [props.matches, initialTeams]);
 
   return (
     <>

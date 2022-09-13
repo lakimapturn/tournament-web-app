@@ -25,6 +25,7 @@ export const fetchMatchList = (tournamentId, age, gender, eventId) => {
       return await dispatch({
         type: FETCH_MATCH_LIST,
         payload: {
+          category: { age: age, gender: gender, event: eventId },
           matches: data.matches,
           initial_num_teams: data["initial-teams"],
         },

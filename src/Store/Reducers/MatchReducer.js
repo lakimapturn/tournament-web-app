@@ -1,3 +1,4 @@
+import { getCategory } from "../../Constants/Functions";
 import { FETCHING_MATCH_DATA, FETCH_MATCH_LIST } from "../Actions/MatchActions";
 
 const initialState = {
@@ -16,10 +17,15 @@ const matchReducer = (state = initialState, action) => {
     }
 
     case FETCH_MATCH_LIST: {
+      const category = action.payload.category;
+      const matches = state.matches;
+      matches[getCategory(category.gender, category.age, category.event)] =
+        action.payload.matches;
+
       return Object.assign({}, state, {
         ...state,
         isFetching: false,
-        matches: action.payload.matches,
+        matches: matches,
         initialNumTeams: action.payload.initial_num_teams,
       });
     }
