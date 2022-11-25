@@ -12,6 +12,7 @@
 .content-container {
   width: 21rem;
   overflow: hidden !important;
+  color: white;
 }
 
 .match-container {
@@ -32,17 +33,27 @@
   overflow: hidden;
 }
 
-.winning-team {
-  color: black;
-}
+/* .winning-team {
+  color: white;
+} */
 
 .team-col {
-  background-color: #d79922;
+  /* background-color: #d79922; */
+  background-color: #696969;
+}
+
+.team-col-winner {
+  background-color: #00a36c;
 }
 
 .score-col {
   border-left: 0.1rem solid black;
-  background-color: #efe2ba;
+  background-color: #a9a9a9;
+}
+
+.score-col-winner {
+  border-left: 0.1rem solid black;
+  background-color: #afe1af;
 }
 
 .fixture-col {
