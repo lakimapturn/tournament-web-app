@@ -13,5 +13,6 @@ export const categories = [
   { id: 4, age: 11, gender: "Male" },
 ];
 
-export const baseUrl = "https://gma-tournament-admin.herokuapp.com/";
+// export const baseUrl = "https://gma-tournament-admin.herokuapp.com/";
+export const baseUrl = "http://localhost:8000/";
 export const developmentUrl = "http://localhost:8000/";

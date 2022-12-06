@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Alert,
   Card,
   CardBody,
   CardHeader,
@@ -92,6 +93,14 @@ const TournamentDetails = (props) => {
               {tournament?.name}
             </CardHeader>
             <CardBody>
+              {tournament?.status === "Ended" && (
+                <Alert>
+                  <p className="lead">This tournament has ended!</p>
+                  <p className="lead mb-0">
+                    Winner - {tournament?.winner.name}
+                  </p>
+                </Alert>
+              )}
               <CategorySelect
                 categories={tournament?.categories}
                 category={selectedCategory}
