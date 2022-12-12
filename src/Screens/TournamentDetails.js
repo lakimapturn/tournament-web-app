@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Alert,
   Card,
@@ -9,6 +9,10 @@ import {
   Row,
   TabContent,
   TabPane,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
 } from "reactstrap";
 import styles from "./TournamentDetails.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,6 +60,15 @@ const TournamentDetails = (props) => {
   const [activeTab, setActiveTab] = useState(0);
   const onTabChangeHandler = (tabId) => {
     setActiveTab(tabId);
+  };
+
+  const [showScoreDetails, setShowScoreDetails] = useState(false);
+  const [scoreDetails, setScoreDetails] = useState([]);
+  const toggleScoreDetails = (setScores) => {
+    setShowScoreDetails((prevState) => {
+      if (prevState === false) setScoreDetails(setScores);
+      return !prevState;
+    });
   };
 
   useEffect(() => {
@@ -143,6 +156,9 @@ const TournamentDetails = (props) => {
                                       )
                                     ]
                                   }
+                                  onPressMatch={(setScores) =>
+                                    toggleScoreDetails(setScores)
+                                  }
                                 />
                               )}
                             </Row>
@@ -180,6 +196,15 @@ const TournamentDetails = (props) => {
           </Card>
         </Row>
       </div>
+      <Modal centered isOpen={showScoreDetails} toggle={toggleScoreDetails}>
+        <ModalHeader toggle={toggleScoreDetails}>Match Details</ModalHeader>
+        <ModalBody>
+          {scoreDetails?.map((score) => (
+            <p>{score}</p>
+          ))}
+        </ModalBody>
+        <ModalFooter></ModalFooter>
+      </Modal>
     </>
   );
 };

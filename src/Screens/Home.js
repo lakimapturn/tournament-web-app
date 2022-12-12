@@ -15,7 +15,7 @@ const Home = (props) => {
       <Title
         size="xl"
         title="GMA Tournaments"
-        subtitle="add a subtitle here..."
+        subtitle=" "
         buttonText="VIEW TOURNAMENTS"
         image="https://content3.jdmagicbox.com/comp/def_content/badminton-courts/1-badminton-courts-1-m069r.jpg?clr=2b3b2b"
         onButtonClick={navigateToTournaments}

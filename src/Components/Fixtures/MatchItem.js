@@ -1,20 +1,19 @@
 import { Col, Container, Row } from "reactstrap";
 import Colors from "../../Constants/Colors";
+import HoverableCard from "../HoverableCard/HoverableCard";
 import styles from "./Fixtures.module.css";
 
 const MatchItem = (props) => {
   let isPlayer1Winner = false;
   let isPlayer2Winner = true;
 
+  const matchScore = props.match?.score[0];
+
   let player1Score = 0,
     player2Score = 0;
-  if (props.match?.score) {
-    player1Score = parseInt(
-      props.match.score.substring(0, props.match.score.indexOf("-"))
-    );
-    player2Score = parseInt(
-      props.match.score.substring(props.match.score.indexOf("-") + 1)
-    );
+  if (matchScore) {
+    player1Score = parseInt(matchScore.substring(0, matchScore.indexOf("-")));
+    player2Score = parseInt(matchScore.substring(matchScore.indexOf("-") + 1));
 
     if (player1Score > player2Score) {
       isPlayer1Winner = true;
@@ -23,13 +22,20 @@ const MatchItem = (props) => {
   } else isPlayer1Winner = isPlayer2Winner = false;
 
   if (props.match === undefined) return <></>;
+
   return (
     <>
       <Container className={`d-flex ${styles["content-container"]} my-3`} fluid>
         <h6 className="my-auto me-3" style={{ color: Colors.gold }}>
           {props.location}
         </h6>
-        <Container className={`${styles["match-container1"]} p-0`}>
+        <HoverableCard
+          onClick={() =>
+            (isPlayer1Winner || isPlayer2Winner) &&
+            props.onPressMatch(props.match?.score.slice(1))
+          }
+          className={`${styles["match-container1"]} p-0`}
+        >
           <Row
             className={`${isPlayer1Winner && styles["winning-team"]} w-100 m-0`}
           >
@@ -53,7 +59,7 @@ const MatchItem = (props) => {
               } border-start border-dark py-2 opacity-75`}
             >
               <p className="m-auto lead fs-6 fw-normal">
-                {player1Score ? player1Score : "--"}
+                {player1Score !== null ? player1Score : "--"}
               </p>
             </Col>
           </Row>
@@ -81,11 +87,11 @@ const MatchItem = (props) => {
               } border-start border-dark py-2 opacity-75`}
             >
               <p className="m-0 lead fs-6 fw-normal">
-                {player2Score ? player2Score : "--"}
+                {player2Score !== null ? player2Score : "--"}
               </p>
             </Col>
           </Row>
-        </Container>
+        </HoverableCard>
       </Container>
     </>
   );

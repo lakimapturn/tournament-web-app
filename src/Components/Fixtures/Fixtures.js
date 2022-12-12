@@ -4,6 +4,8 @@ import styles from "./Fixtures.module.css";
 import MatchItem from "./MatchItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import HoverableCard from "../HoverableCard/HoverableCard";
 import { fetchMatchList } from "../../Store/Actions/MatchActions";
 import { getCategory } from "../../Constants/Functions";
 
@@ -27,7 +29,15 @@ const Fixtures = (props) => {
             >
               {col.map((row) => (
                 <tr key={Math.random().toString()}>
-                  {<row.item match={row.props} location={row.location} />}
+                  {
+                    <row.item
+                      onPressMatch={(setScores) =>
+                        props.onPressMatch(setScores)
+                      }
+                      match={row.props}
+                      location={row.location}
+                    />
+                  }
                 </tr>
               ))}
             </th>
