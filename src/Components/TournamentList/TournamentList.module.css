@@ -1,0 +1,38 @@
+.card-img-container {
+  margin: auto;
+}
+
+.collapse-layout {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  justify-content: space-around;
+}
+
+@media (max-width: 960px) {
+  .collapse-layout {
+    grid-template-columns: 95%;
+  }
+}
+
+.event-container {
+  min-width: 50%;
+}
+
+.event-title {
+  font-size: 2.5vh;
+}
+
+.event-title-container {
+  opacity: 0.7;
+  transition: ease-in-out 0.3s;
+  margin: 12.5%;
+}
+
+.event-title-container:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.helper-text {
+  font-size: 1.2vh;
+}

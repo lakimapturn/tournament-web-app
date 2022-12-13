@@ -1,0 +1,61 @@
+.match-item {
+  border: 0.02rem solid;
+  margin: 0 0.5rem;
+}
+
+.container {
+  overflow: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+.content-container {
+  width: 21rem;
+  overflow: hidden !important;
+  color: white;
+}
+
+.match-container {
+  display: flex;
+  align-items: center;
+  margin: 0.7rem;
+}
+
+.divider {
+  background-color: black;
+  opacity: 100;
+}
+
+.match-container1 {
+  border: 0.01rem solid black;
+  border-radius: 0.5rem;
+  width: 90%;
+  overflow: hidden;
+}
+
+/* .winning-team {
+  color: white;
+} */
+
+.team-col {
+  /* background-color: #d79922; */
+  background-color: #696969;
+}
+
+.team-col-winner {
+  background-color: #00a36c;
+}
+
+.score-col {
+  border-left: 0.1rem solid black;
+  background-color: #a9a9a9;
+}
+
+.score-col-winner {
+  border-left: 0.1rem solid black;
+  background-color: #afe1af;
+}
+
+.fixture-col {
+  vertical-align: middle !important;
+}

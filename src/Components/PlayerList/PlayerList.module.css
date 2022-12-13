@@ -1,0 +1,18 @@
+/* .table {
+  width: auto !important;
+  border: 0.05rem solid;
+  margin: auto;
+} */
+
+.table {
+  width: -webkit-fill-available;
+  margin: auto 10rem;
+}
+
+.player-list-container {
+  display: grid !important;
+}
+
+.player-list {
+  border: 0 !important;
+}

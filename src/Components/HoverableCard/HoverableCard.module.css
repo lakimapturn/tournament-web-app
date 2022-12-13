@@ -1,0 +1,13 @@
+.card {
+  box-shadow: 0 0.02rem 0.5rem -0.015rem rgb(0 0 0 / 15%);
+  margin-bottom: 1rem;
+  position: relative;
+  transition: 0.25s all ease-in-out;
+  -webkit-transition: 0.25s all ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0.1rem 0.2rem 1rem lightgray;
+  transform: translateY(0.4rem);
+  -webkit-transform: translateY(-0.4rem);
+}
