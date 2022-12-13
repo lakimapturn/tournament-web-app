@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "reactstrap";
 import Colors from "../../Constants/Colors";
+import { formatScore } from "../../Constants/Functions";
 import HoverableCard from "../HoverableCard/HoverableCard";
 import styles from "./Fixtures.module.css";
 
@@ -12,8 +13,7 @@ const MatchItem = (props) => {
   let player1Score = 0,
     player2Score = 0;
   if (matchScore) {
-    player1Score = parseInt(matchScore.substring(0, matchScore.indexOf("-")));
-    player2Score = parseInt(matchScore.substring(matchScore.indexOf("-") + 1));
+    [player1Score, player2Score] = formatScore(matchScore);
 
     if (player1Score > player2Score) {
       isPlayer1Winner = true;
@@ -32,7 +32,11 @@ const MatchItem = (props) => {
         <HoverableCard
           onClick={() =>
             (isPlayer1Winner || isPlayer2Winner) &&
-            props.onPressMatch(props.match?.score.slice(1))
+            props.onPressMatch(
+              props.match?.score.slice(1),
+              props.match?.team1.school,
+              props.match?.team2.school
+            )
           }
           className={`${styles["match-container1"]} p-0`}
         >

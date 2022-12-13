@@ -13,6 +13,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Table,
 } from "reactstrap";
 import styles from "./TournamentDetails.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +31,7 @@ import PlayerSchoolList from "../Components/PlayerList/PlayerSchoolList";
 import Fixtures from "../Components/Fixtures/Fixtures";
 import { Typography } from "@mui/material";
 import Title from "./Title";
-import { getCategory } from "../Constants/Functions";
+import { formatScore, getCategory } from "../Constants/Functions";
 import { fetchMatchList } from "../Store/Actions/MatchActions";
 
 const TournamentDetails = (props) => {
@@ -63,10 +64,12 @@ const TournamentDetails = (props) => {
   };
 
   const [showScoreDetails, setShowScoreDetails] = useState(false);
-  const [scoreDetails, setScoreDetails] = useState([]);
-  const toggleScoreDetails = (setScores) => {
+  const [scoreDetails, setScoreDetails] = useState({});
+  const toggleScoreDetails = (setScores, team1, team2) => {
+    console.log(team1, team2);
     setShowScoreDetails((prevState) => {
-      if (prevState === false) setScoreDetails(setScores);
+      if (prevState === false)
+        setScoreDetails({ score: setScores, team1: team1, team2: team2 });
       return !prevState;
     });
   };
@@ -156,8 +159,8 @@ const TournamentDetails = (props) => {
                                       )
                                     ]
                                   }
-                                  onPressMatch={(setScores) =>
-                                    toggleScoreDetails(setScores)
+                                  onPressMatch={(setScores, team1, team2) =>
+                                    toggleScoreDetails(setScores, team1, team2)
                                   }
                                 />
                               )}
@@ -199,11 +202,41 @@ const TournamentDetails = (props) => {
       <Modal centered isOpen={showScoreDetails} toggle={toggleScoreDetails}>
         <ModalHeader toggle={toggleScoreDetails}>Match Details</ModalHeader>
         <ModalBody>
-          {scoreDetails?.map((score) => (
-            <p>{score}</p>
-          ))}
+          <Table className="text-center" borderless responsive size="sm">
+            <thead class="border-bottom">
+              <tr>
+                <th className="lead">
+                  {scoreDetails.team1?.logo ? (
+                    <img src={scoreDetails.team1?.logo} />
+                  ) : (
+                    scoreDetails.team1?.name
+                  )}
+                </th>
+                <th className="lead">Set</th>
+                <th className="lead">
+                  {scoreDetails.team2?.logo ? (
+                    <img src={scoreDetails.team2?.logo} />
+                  ) : (
+                    scoreDetails.team2?.name
+                  )}
+                </th>
+              </tr>
+              <div style={{ height: "2px", width: "2px" }} />
+            </thead>
+            <tbody>
+              {scoreDetails?.score?.map((score, index) => {
+                const [team1Score, team2Score] = formatScore(score);
+                return (
+                  <tr key={index}>
+                    <td>{team1Score}</td>
+                    <td>{index + 1}</td>
+                    <td>{team2Score}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
         </ModalBody>
-        <ModalFooter></ModalFooter>
       </Modal>
     </>
   );

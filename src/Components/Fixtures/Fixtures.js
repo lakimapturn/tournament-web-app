@@ -31,8 +31,8 @@ const Fixtures = (props) => {
                 <tr key={Math.random().toString()}>
                   {
                     <row.item
-                      onPressMatch={(setScores) =>
-                        props.onPressMatch(setScores)
+                      onPressMatch={(setScores, team1, team2) =>
+                        props.onPressMatch(setScores, team1, team2)
                       }
                       match={row.props}
                       location={row.location}

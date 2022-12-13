@@ -14,3 +14,8 @@ export const getCookie = (name) => {
 };
 
 export const getCategory = (gender, age, event) => `${age}-${gender}-${event}`;
+
+export const formatScore = (score) => [
+  parseInt(score.substring(0, score.indexOf("-"))),
+  parseInt(score.substring(score.indexOf("-") + 1)),
+];
