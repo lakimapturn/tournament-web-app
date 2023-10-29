@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/tournament-web-app/static/css/main.2c45e0a8.css",
+    "main.js": "/tournament-web-app/static/js/main.8e2e9b67.js",
+    "static/js/787.81fa38a3.chunk.js": "/tournament-web-app/static/js/787.81fa38a3.chunk.js",
+    "static/media/under-construction.png": "/tournament-web-app/static/media/under-construction.582395e5545e06fea746.png",
+    "static/media/GMALogo.jpg": "/tournament-web-app/static/media/GMALogo.71ccca7eae65bb36c205.jpg",
+    "index.html": "/tournament-web-app/index.html",
+    "main.2c45e0a8.css.map": "/tournament-web-app/static/css/main.2c45e0a8.css.map",
+    "main.8e2e9b67.js.map": "/tournament-web-app/static/js/main.8e2e9b67.js.map",
+    "787.81fa38a3.chunk.js.map": "/tournament-web-app/static/js/787.81fa38a3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2c45e0a8.css",
+    "static/js/main.8e2e9b67.js"
+  ]
+}
