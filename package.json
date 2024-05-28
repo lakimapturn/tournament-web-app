@@ -1,7 +1,7 @@
 {
-  "homepage": "http://laki.github.io/tournament-web-app",
+  "homepage": "http://lakimapturn.github.io/tournament-tracker",
   "name": "tournament-frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.2",
