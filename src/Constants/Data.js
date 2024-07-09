@@ -14,5 +14,5 @@ export const categories = [
 ];
 
 // export const baseUrl = "https://gma-tournament-admin.herokuapp.com/";
-export const baseUrl = "http://localhost:8000/";
+export const baseUrl = "http://lakimapturn1.pythonanywhere.com/";
 export const developmentUrl = "http://localhost:8000/";
